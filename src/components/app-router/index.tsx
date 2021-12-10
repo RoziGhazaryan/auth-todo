@@ -1,22 +1,26 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { privateRoute, publicRoute, RouteNames } from "../../router";
+import Sidebar from '../sidebar';
 
 function AppRouter() {
 
-  const token = true;
+  const token = false;
 
   return (
     <>
-      <div className='G-pages'>
+      <div className='g-pages'>
         {
           token ?
             <Switch>
               {privateRoute.map(route =>
-                <Route path={route.path}
-                  exact={route.exact}
-                  component={route.component}
-                  key={route.path}
-                />
+                <div className="g-sidebar--page">
+                  <Sidebar />
+                  <Route path={route.path}
+                    exact={route.exact}
+                    component={route.component}
+                    key={route.path}
+                  />
+                </div>
               )}
               <Redirect to={RouteNames.HOME} />
             </Switch>

@@ -13,7 +13,7 @@ export interface IRoute {
 export enum RouteNames {
   SIGN_UP = '/sign-up',
   SIGN_IN = '/sign-in',
-  HOME = '/home',
+  HOME = '/',
   TODO_LIST = '/todo-list',
 }
 

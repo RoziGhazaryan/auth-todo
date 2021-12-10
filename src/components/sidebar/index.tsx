@@ -2,28 +2,19 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Button } from 'antd';
 import {
-   MenuUnfoldOutlined,
-   MenuFoldOutlined,
    UnorderedListOutlined,
    LogoutOutlined,
 } from '@ant-design/icons';
-import useSidebar from './useSidebar';
+import './style.scss';
 
 const Sidebar: FC = () => {
-
-   const { collapsed, toggleMenu } = useSidebar();
-
    return (
-      <div>
-         <Button type="primary" onClick={toggleMenu} style={{ marginBottom: 16 }}>
-            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-         </Button>
+      <div className="sidebar">
          <Menu
             defaultSelectedKeys={['1']}
             defaultOpenKeys={['sub1']}
             mode="inline"
             theme="dark"
-            inlineCollapsed={collapsed}
          >
             <Menu.Item key="todo" icon={<UnorderedListOutlined />}>
                <Link to='/todo-list'>

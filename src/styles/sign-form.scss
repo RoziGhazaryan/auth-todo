@@ -1,0 +1,14 @@
+.sign-form {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+
+   form {
+      width: 500px;
+
+      .ant-form-item {
+         display: block;
+      }
+   }
+}
