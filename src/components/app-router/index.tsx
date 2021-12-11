@@ -1,42 +1,46 @@
+import { Fragment } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { privateRoute, publicRoute, RouteNames } from "../../router";
 import Sidebar from '../sidebar';
+import './style.scss';
 
 function AppRouter() {
 
-  const token = false;
+  const token = sessionStorage.getItem('token');
 
   return (
     <>
       <div className='g-pages'>
         {
           token ?
-            <Switch>
-              {privateRoute.map(route =>
-                <div className="g-sidebar--page">
-                  <Sidebar />
+            <div className='public-pages'>
+              <Sidebar />
+              <Switch>
+                {privateRoute.map(route =>
                   <Route path={route.path}
                     exact={route.exact}
                     component={route.component}
                     key={route.path}
                   />
-                </div>
-              )}
-              <Redirect to={RouteNames.HOME} />
-            </Switch>
+                )}
+                <Redirect to={RouteNames.HOME} />
+              </Switch>
+            </div>
             :
-            <Switch>
-              {publicRoute.map(route =>
-                <Route path={route.path}
-                  exact={route.exact}
-                  component={route.component}
-                  key={route.path}
-                />
-              )}
-              <Redirect to={RouteNames.SIGN_IN} />
-            </Switch>
+            <div className='private-pages'>
+              <Switch>
+                {publicRoute.map(route =>
+                  <Route path={route.path}
+                    exact={route.exact}
+                    component={route.component}
+                    key={route.path}
+                  />
+                )}
+                <Redirect to={RouteNames.SIGN_IN} />
+              </Switch>
+            </div>
         }
-      </div>
+      </div >
     </>
 
   )

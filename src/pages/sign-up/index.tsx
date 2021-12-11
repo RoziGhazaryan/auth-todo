@@ -1,16 +1,38 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Button, Form, Input } from "antd";
 import '../../styles/sign-form.scss';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const SignUp: FC = () => {
+
+   const history = useHistory();
+
    const onFinish = (values: any) => {
       console.log('Success:', values);
+      const usersStr = localStorage.getItem('users') as string;
+      const userIdStr = localStorage.getItem('userId') as string;
+      const users = JSON.parse(usersStr);
+      const userId = JSON.parse(userIdStr) + 1;
+
+      users.push({ id: userId, ...values, todoId: 0, todo: [] });
+
+      localStorage.setItem('userId', userId);
+      localStorage.setItem('users', JSON.stringify(users));
+
+      history.push('/sign-in');
    };
 
    const onFinishFailed = (errorInfo: any) => {
       console.log('Failed:', errorInfo);
    };
+
+   useEffect(() => {
+      const users = localStorage.getItem('users');
+      if (!users) {
+         localStorage.setItem('users', '[]');
+         localStorage.setItem('userId', '0');
+      }
+   }, [])
 
    return (
       <div className="sign-form">
@@ -21,18 +43,11 @@ const SignUp: FC = () => {
             onFinishFailed={onFinishFailed}
             autoComplete="off"
          >
+            <h2>Sign up</h2>
             <Form.Item
-               label="Email"
-               name="email"
-               rules={[{ required: true, message: 'Please input your email!' }]}
-            >
-               <Input />
-            </Form.Item>
-
-            <Form.Item
-               label="Username"
-               name="username"
-               rules={[{ required: true, message: 'Please input your username!' }]}
+               label="Login"
+               name="login"
+               rules={[{ required: true, message: 'Please input your login!' }]}
             >
                <Input />
             </Form.Item>
@@ -45,10 +60,9 @@ const SignUp: FC = () => {
                <Input.Password />
             </Form.Item>
 
-
-            <Form.Item name="signIn">
+            <div className="sign-link">
                <Link to='/sign-in'>Already have an account?</Link>
-            </Form.Item>
+            </div>
 
             <Form.Item>
                <Button type="primary" htmlType="submit">

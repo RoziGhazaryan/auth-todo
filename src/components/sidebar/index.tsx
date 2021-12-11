@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, Button } from 'antd';
+import { Link, useHistory } from 'react-router-dom';
+import { Menu } from 'antd';
 import {
    UnorderedListOutlined,
    LogoutOutlined,
@@ -8,11 +8,20 @@ import {
 import './style.scss';
 
 const Sidebar: FC = () => {
+
+   const history = useHistory();
+
+   const logOut = () => {
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('user');
+      window.location.reload();
+      history.push('/sign-in');
+   }
+
    return (
       <div className="sidebar">
          <Menu
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
+            defaultSelectedKeys={['todo']}
             mode="inline"
             theme="dark"
          >
@@ -21,10 +30,8 @@ const Sidebar: FC = () => {
                   My Todo List
                </Link>
             </Menu.Item>
-            <Menu.Item key="logout" icon={<LogoutOutlined />}>
-               <Link to='/login'>
-                  Log out
-               </Link>
+            <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={logOut}>
+               Log out
             </Menu.Item>
          </Menu>
       </div>

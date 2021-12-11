@@ -1,4 +1,18 @@
 .g-sidebar--page {
-   height: 100vh;
    display: flex;
+   height: 100vh;
+}
+
+::-webkit-scrollbar {
+   width: 6px;
+   transition: .3s;
+ }
+  
+::-webkit-scrollbar-thumb {
+  background: rgb(139, 134, 134); 
+  border-radius: 8px;
+
+  &:hover {
+     background: rgb(137, 140, 167); 
+  }
 }

@@ -1,11 +1,37 @@
 import React, { FC } from "react";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
+import { Link, useHistory } from "react-router-dom";
 import '../../styles/sign-form.scss';
-import { Link } from "react-router-dom";
 
 const SignIn: FC = () => {
+
+  const history = useHistory();
+
+  let isUserExist = false;
+
   const onFinish = (values: any) => {
-    console.log('Success:', values);
+    const usersStr = localStorage.getItem('users') as string;
+    const users = JSON.parse(usersStr);
+
+    users?.some((el: any) => {
+      if (values.login === el.login && values.password === el.password) {
+        isUserExist = true;
+        values.id = el.id;
+        return true;
+      } else {
+        isUserExist = false;
+        return false;
+      }
+    })
+
+    if (!users || !isUserExist) {
+      message.error("User doesn't exist");
+    } else {
+      sessionStorage.setItem('token', "asdfghjkl");
+      sessionStorage.setItem('userId', JSON.stringify(values.id));
+      history.push('/');
+      window.location.reload();
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -21,10 +47,11 @@ const SignIn: FC = () => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
+        <h2>Sign in</h2>
         <Form.Item
-          label="Username"
-          name="username"
-          rules={[{ required: true, message: 'Please input your username!' }]}
+          label="Login"
+          name="login"
+          rules={[{ required: true, message: 'Please input your login!' }]}
         >
           <Input />
         </Form.Item>
@@ -37,13 +64,9 @@ const SignIn: FC = () => {
           <Input.Password />
         </Form.Item>
 
-        <Form.Item name="remember" valuePropName="checked">
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
-        <Form.Item name="signUp">
+        <div className="sign-link">
           <Link to='/sign-up'>Sign up here</Link>
-        </Form.Item>
+        </div>
 
         <Form.Item>
           <Button type="primary" htmlType="submit">
