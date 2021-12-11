@@ -1,18 +1,18 @@
 import { Button, Input } from "antd";
-import { FC, useState } from "react";
-// import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-// import { userSlice } from "../../store/reducers/UserSlice";
+import { FC, useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { userSlice } from "../../store/reducers/UserSlice";
 import './style.scss';
 
 const Home: FC = () => {
   // useDispatch
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   // actions
-  // const { addUserData } = userSlice.actions;
+  const { refreshUserData, addTodo } = userSlice.actions;
 
   // useSelector
-  // let { userState } = useAppSelector(state => state.userReducer);
+  const { userState } = useAppSelector(state => state.userReducer);
 
   // storage
   let usersStr = localStorage.getItem('users') as string;
@@ -22,8 +22,6 @@ const Home: FC = () => {
   const userId = JSON.parse(userIdStr);
 
   let user = users.find((el: any) => +(el.id) === userId);
-
-  // let user = users.find((el: any) => +(el.id) === userId);
 
   // useState
   const [todoText, setTodoText] = useState<string>('');
@@ -37,14 +35,8 @@ const Home: FC = () => {
 
   const onAddTodo = () => {
     setTodoText('');
-    usersStr = localStorage.getItem('users') as string;
-    users = JSON.parse(usersStr);
-    const userIndex = users.findIndex((el: any) => el.id === userId);
-    user = users[userIndex];
-    user.todo.push(todoObj);
-    user.todoId += 1;
-    console.log(users)
-    localStorage.setItem('users', JSON.stringify(users));
+    dispatch(refreshUserData());
+    dispatch(addTodo(todoObj));
   }
 
   const onKeyDown = (e: any) => {
@@ -52,6 +44,10 @@ const Home: FC = () => {
       onAddTodo();
     }
   }
+
+  useEffect(() => {
+    dispatch(refreshUserData());
+  }, [dispatch, refreshUserData]);
 
   return (
     <div className="g-main-page">
@@ -63,7 +59,7 @@ const Home: FC = () => {
           className="add-btn">Add Todo</Button>
       </div>
       <div className="todo-list">
-        {user.todo?.map((el: any) => {
+        {userState?.todo?.map((el: any) => {
           return (
             <div className="todo-block" key={el.id}>
               {el.text}
