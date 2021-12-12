@@ -9,7 +9,7 @@ const Home: FC = () => {
   const dispatch = useAppDispatch();
 
   // actions
-  const { refreshUserData, changeTodoStatus } = userSlice.actions;
+  const { refreshUserData, changeTodoStatus, deleteTodo } = userSlice.actions;
 
   // useSelector
   const { userState } = useAppSelector(state => state.userReducer);
@@ -31,6 +31,10 @@ const Home: FC = () => {
     ));
   };
 
+  const deleteUserTodo = (el: any) => {
+    dispatch(deleteTodo({ id: el.id }))
+  }
+
   const activeData = userState.todo.filter((el: any) => el.status === 'active');
   const completedData = userState.todo.filter((el: any) => el.status === 'completed');
 
@@ -45,6 +49,7 @@ const Home: FC = () => {
           total={activeData.length}
           pageSize={2}
           onChangeStatus={onChangeStatus}
+          deleteTodo={deleteUserTodo}
         />
         <TodoTable
           title='Completed'
@@ -54,6 +59,7 @@ const Home: FC = () => {
           total={completedData.length}
           pageSize={2}
           onChangeStatus={onChangeStatus}
+          deleteTodo={deleteUserTodo}
         />
       </div>
     </div >

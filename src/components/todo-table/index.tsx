@@ -2,14 +2,12 @@ import { FC, useEffect, useState } from 'react';
 import { Button, Pagination, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import './style.scss';
-
 interface Todo {
    id: number;
    title: string,
    description: string;
    status: string,
 }
-
 interface TableProps {
    title: string,
    allData: Todo[],
@@ -18,9 +16,20 @@ interface TableProps {
    total: number,
    pageSize: any,
    onChangeStatus: any,
+   deleteTodo: any,
 }
 
-const TodoTable: FC<TableProps> = ({ title, allData, current, setCurrent, total, pageSize, onChangeStatus }) => {
+const TodoTable: FC<TableProps> = (
+   {
+      title,
+      allData,
+      current,
+      setCurrent,
+      total,
+      pageSize,
+      onChangeStatus,
+      deleteTodo,
+   }) => {
    const columns: ColumnsType<Todo> = [
       {
          key: 'id',
@@ -36,6 +45,11 @@ const TodoTable: FC<TableProps> = ({ title, allData, current, setCurrent, total,
          key: 'id',
          title: 'Status',
          render: ({ id, status }) => <Button onClick={() => onChangeStatus({ id, status })}>{status}</Button>,
+      },
+      {
+         key: 'id',
+         title: 'Delete',
+         render: ({ id }) => <Button onClick={() => deleteTodo({ id })}>DELETE</Button>,
       },
    ];
 

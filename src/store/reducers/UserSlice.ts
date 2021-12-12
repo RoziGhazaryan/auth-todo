@@ -35,6 +35,7 @@ export const userSlice = createSlice({
          const userIdStr = sessionStorage.getItem('userId') as string;
          const userId = JSON.parse(userIdStr);
          const user = users.find((el: any) => el.id === userId);
+         
          state.userState = user;
       },
       addTodo(state, action: PayloadAction<any>) {
@@ -42,8 +43,10 @@ export const userSlice = createSlice({
          const users = getUsers();
          const userIndex = users.findIndex((el: any) => el.id === userState.id);
          const user = users[userIndex];
+         
          user.todo.push(action.payload);
          user.todoId += 1;
+
          localStorage.setItem('users', JSON.stringify(users));
 
          state.userState = user;
@@ -53,8 +56,23 @@ export const userSlice = createSlice({
          const users = getUsers();
          const userIndex = users.findIndex((el: any) => el.id === userState.id);
          const user = users[userIndex];
-         const todo = user.todo.find((el:any) => el.id === action.payload.id);
+         const todo = user.todo.find((el: any) => el.id === action.payload.id);
+
          todo.status = action.payload.status;
+         
+         localStorage.setItem('users', JSON.stringify(users));
+
+         state.userState = user;
+      },
+      deleteTodo(state, action: PayloadAction<any>) {
+         const { userState } = state;
+         const users = getUsers();
+         const userIndex = users.findIndex((el: any) => el.id === userState.id);
+         const user = users[userIndex];
+         const todo = user.todo.find((el: any) => el.id === action.payload.id);
+
+         user.todo.splice(user.todo.indexOf(todo), 1);
+
          localStorage.setItem('users', JSON.stringify(users));
 
          state.userState = user;
