@@ -2,6 +2,7 @@ import { Button, Input } from "antd";
 import { FC, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { userSlice } from "../../store/reducers/UserSlice";
+import TodoTable from '../../components/todo-table';
 import './style.scss';
 
 const Home: FC = () => {
@@ -9,63 +10,50 @@ const Home: FC = () => {
   const dispatch = useAppDispatch();
 
   // actions
-  const { refreshUserData, addTodo } = userSlice.actions;
+  const { refreshUserData, addTodo, changeTodoStatus } = userSlice.actions;
 
   // useSelector
   const { userState } = useAppSelector(state => state.userReducer);
 
-  // storage
-  let usersStr = localStorage.getItem('users') as string;
-  let users = JSON.parse(usersStr);
-
-  const userIdStr = sessionStorage.getItem('userId') as string;
-  const userId = JSON.parse(userIdStr);
-
-  let user = users.find((el: any) => +(el.id) === userId);
-
   // useState
-  const [todoText, setTodoText] = useState<string>('');
+  const [current, setCurrent] = useState(1);
 
-  // on change input value
-  const onChange = (e: any) => {
-    setTodoText(e.target.value);
-  }
-
-  const todoObj = { id: user.todoId + 1, text: todoText };
-
-  const onAddTodo = () => {
-    setTodoText('');
-    dispatch(refreshUserData());
-    dispatch(addTodo(todoObj));
-  }
-
-  const onKeyDown = (e: any) => {
-    if (e.key === 'Enter') {
-      onAddTodo();
-    }
-  }
+  // storage
 
   useEffect(() => {
     dispatch(refreshUserData());
   }, [dispatch, refreshUserData]);
 
+  const onChangeStatus = (el: any) => {
+    dispatch(changeTodoStatus(
+      {
+        id: el.id,
+        status: el.status === 'completed' ? 'active' : 'completed',
+      }
+    ));
+  };
+
   return (
-    <div className="g-main-page">
-      <div className="add-todo">
-        <Input value={todoText} onChange={onChange} onKeyDown={onKeyDown} />
-        <Button onClick={onAddTodo}
-          disabled={!todoText}
-          type="primary"
-          className="add-btn">Add Todo</Button>
-      </div>
-      <div className="todo-list">
-        {userState?.todo?.map((el: any) => {
-          return (
-            <div className="todo-block" key={el.id}>
-              {el.text}
-            </div>
-          )
-        })}
+    <div className="g-page">
+      <div className="todo-tables">
+        <TodoTable
+          title='Active'
+          allData={userState.todo}
+          current={current}
+          setCurrent={setCurrent}
+          total={userState.todo.length}
+          pageSize={2}
+          onChangeStatus={onChangeStatus}
+        />
+        <TodoTable
+          title='Completed'
+          allData={userState.todo}
+          current={current}
+          setCurrent={setCurrent}
+          total={userState.todo.length}
+          pageSize={2}
+          onChangeStatus={onChangeStatus}
+        />
       </div>
     </div >
   )

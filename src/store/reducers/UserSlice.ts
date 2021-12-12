@@ -47,6 +47,18 @@ export const userSlice = createSlice({
          localStorage.setItem('users', JSON.stringify(users));
 
          state.userState = user;
+      },
+      changeTodoStatus(state, action: PayloadAction<any>) {
+         const { userState } = state;
+         const users = getUsers();
+         const userIndex = users.findIndex((el: any) => el.id === userState.id);
+         const user = users[userIndex];
+         const todo = user.todo.find((el:any) => el.id === action.payload.id);
+         console.log(todo);
+         todo.status = action.payload.status;
+         localStorage.setItem('users', JSON.stringify(users));
+
+         state.userState = user;
       }
    },
 })

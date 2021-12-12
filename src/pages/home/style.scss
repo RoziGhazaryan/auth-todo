@@ -1,25 +1,5 @@
-.g-main-page {
-   padding: 24px;
-
-   .add-todo {
-      display: flex;
-
-      .add-btn {
-         margin-left: 16px;
-      }
-   }
-
-   .todo-list {
-      height: 200px;
-      overflow-y: scroll;
-      margin-top: 64px;
-      padding: 0 8px;
-
-      .todo-block {
-         padding: 16px;
-         margin-bottom: 16px;
-         border-radius: 8px;
-         box-shadow: inset 0px 0px 11px 5px rgba(220,220,224,1);
-      }
-   }
+.todo-tables {
+   display: flex;
+   justify-content: space-between;
+   margin: 0 -16px;
 }
