@@ -1,12 +1,81 @@
 @import "../../assets/styles/mixins";
 
 .todo-table {
-   @include font(16px, 500, "arial-medium");
    padding: 16px;
-   box-shadow: inset 0 0 28px -9px $staticColor;
+   box-shadow: inset 0 0 45px -20px $staticColor;
    border-radius: $staticRadius;
+
+   .todo-type {
+      color: $staticColor;
+      @include font(24px, 500, "arial-medium");
+      padding-left: 16px;
+   }
+      
+   thead {
+      @include font(18px, 500, "arial-medium");
+   }
+
+   .ant-table-cell {
+      width: 20%;
+      @include font(16px, 400, "arial");
+
+      .description {
+         height: 48px;
+         overflow-y: scroll;
+      }
+   }
+
+   .ant-table-cell:last-child {
+      text-align: center;
+   }
 }
 
 .todo-table + .todo-table {
    margin-top: 32px;
+}
+
+.status-btn {
+   position: relative;
+   padding: 4px 24px;
+   color: #ffffff;
+   background-color: $staticColor;
+   border-radius: $staticRadius;
+   box-shadow: 0 0 6px 0 $staticColor;
+   border: unset;
+   cursor: pointer;
+
+   .tooltip-text {
+      position: absolute;
+      top: 24px;
+      width: 152px;
+      background-color: rgba(29, 29, 29, 0.8);
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      transition: .3s;
+      z-index: 1;
+      visibility: hidden;
+      opacity: 0;
+      @include font(14px, 300, 'arial-light');
+   }
+
+   &:hover {
+      .tooltip-text {
+         visibility: visible;
+         opacity: 1;
+      }
+   }
+   &:focus {
+      border: 1px solid $staticColor;
+   }
+}
+
+.status-btn.completed {
+   background-color: rgb(1, 155, 73);
+}
+
+.delete-icon svg {
+   width: 20px;
+   height: 20px;
 }

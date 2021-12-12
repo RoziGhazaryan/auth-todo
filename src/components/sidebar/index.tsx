@@ -55,7 +55,7 @@ const Sidebar: FC = () => {
             </Menu.Item>
             <Menu.Item key="/todo-list" icon={<UnorderedListOutlined />}>
                <Link to='/todo-list'>
-                  My Todo List
+                  My Todo Lists
                </Link>
             </Menu.Item>
             <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={logOut}>

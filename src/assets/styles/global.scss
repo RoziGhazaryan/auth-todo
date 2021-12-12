@@ -18,6 +18,10 @@
 .g-page {
    width: 100%;
    padding: 24px;
+
+   @media (max-width: 991.98px) {
+      padding: 16px;
+   }
 }
 
 .g-sidebar--page {
@@ -27,6 +31,7 @@
 
 ::-webkit-scrollbar {
    width: 6px;
+   height: 4px;
    transition: .3s;
  }
   
@@ -58,4 +63,36 @@
 
 .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
    background-color: $staticColor;
+}
+
+.ant-pagination {
+   margin-top: 16px;
+   margin-bottom: 16px;
+
+   .ant-pagination-item {
+      &:focus-visible, &:hover {
+         border-color: $staticColor;
+
+         a {
+            color: $staticColor;
+         }
+      }
+   }
+
+   .ant-pagination-item.ant-pagination-item-active {
+      border-color: $staticColor;
+      background-color: $staticColor;
+
+      a {
+         color: #ffffff;
+      }
+   }
+
+   .ant-pagination-prev:focus-visible .ant-pagination-item-link, 
+   .ant-pagination-next:focus-visible .ant-pagination-item-link, 
+   .ant-pagination-prev:hover .ant-pagination-item-link, 
+   .ant-pagination-next:hover .ant-pagination-item-link {
+      color: $staticColor;
+      border-color: $staticColor;
+   }
 }

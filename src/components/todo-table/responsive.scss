@@ -1,0 +1,24 @@
+@media (max-width: 991.98px) {
+   .todo-table {
+      padding: 0;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      box-shadow: unset;
+   }
+}
+
+@media (max-width: 575.98px) {
+   .todo-table {
+      .todo-type {
+         font-size: 18px;
+      }
+
+      thead {
+         font-size: 16px;
+      }
+
+      .ant-table-cell {
+         font-size: 14px;
+      }
+   }
+}

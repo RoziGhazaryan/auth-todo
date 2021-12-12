@@ -1,8 +1,10 @@
 import { FC, useEffect, useState } from 'react';
-import { Button, Pagination, Table } from 'antd';
+import { Pagination, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
-import './style.scss';
+import { DeleteOutlined } from '@ant-design/icons';
 import moment from 'moment';
+import './style.scss';
+import './responsive.scss';
 interface Todo {
    id: number;
    name: string,
@@ -45,12 +47,21 @@ const TodoTable: FC<TableProps> = (
          key: 'id',
          title: 'Description',
          dataIndex: 'description',
+         render: (descr) => <div className='description'>{descr}</div>
       },
       {
          key: 'id',
          title: 'Status',
          render: ({ id, status }) => (
-            <Button onClick={() => onChangeStatus({ id, status })}>{status}</Button>
+            <button
+               className={`status-btn ${status === 'completed' ? 'completed' : 'active'}`}
+               onClick={() => onChangeStatus({ id, status })}
+            >
+               {status}
+               <span className='tooltip-text'>
+                  click to set {status === 'active' ? 'completed' : 'active'}
+               </span>
+            </button>
          )
       },
       {
@@ -63,7 +74,9 @@ const TodoTable: FC<TableProps> = (
       {
          key: 'id',
          title: 'Delete',
-         render: ({ id }) => <Button onClick={() => deleteTodo({ id })}>DELETE</Button>,
+         render: ({ id }) => (
+            <DeleteOutlined className='delete-icon' onClick={() => deleteTodo({ id })} />
+         )
       },
    ];
 
@@ -80,7 +93,7 @@ const TodoTable: FC<TableProps> = (
 
    return (
       <div className='todo-table'>
-         <h2>{title}</h2>
+         <h2 className='todo-type'>{title}</h2>
          <div className='todo-table--inner'>
             <Table<Todo>
                columns={columns}
