@@ -2,6 +2,7 @@ import React, { FC, useEffect } from "react";
 import { Button, Form, Input, message } from "antd";
 import { Link, useHistory } from "react-router-dom";
 import '../../assets/styles/sign-form.scss';
+import '../../assets/styles/sign-form-responsive.scss';
 
 const SignIn: FC = () => {
 
