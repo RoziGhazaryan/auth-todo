@@ -56,10 +56,20 @@ const AddTodo: FC = () => {
       <div className="g-page">
          <div className="add-todo">
             <div className="add-todo--name">
-               <Input value={name} onChange={onChangeName} onKeyDown={onKeyDown} />
+               <Input 
+                  value={name}
+                  onChange={onChangeName}
+                  onKeyDown={onKeyDown}
+                  placeholder="Todo Name"
+               />
             </div>
             <div className="add-todo--descr">
-               <TextArea value={description} onChange={onChangeDescription} onKeyDown={onKeyDown} />
+               <TextArea
+                  value={description}
+                  onChange={onChangeDescription}
+                  onKeyDown={onKeyDown}
+                  placeholder="Todo Description"
+               />
             </div>
             <div className="add-todo--btn">
                <Button onClick={onAddTodo}
