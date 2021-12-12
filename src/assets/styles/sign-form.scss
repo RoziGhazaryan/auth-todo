@@ -1,3 +1,5 @@
+@import "./mixins.scss";
+
 .sign-form {
    display: flex;
    justify-content: center;
@@ -6,19 +8,20 @@
 
    form {
       width: 400px;
-      padding: 64px 48px;
-      border-radius: 8px;
-      box-shadow: 0px 0px 28px 16px rgba(169,180,194,1);
+      padding: 48px 32px;
+      border-radius: $staticRadius;
+      box-shadow: 0 0 48px -9px $staticColor;
 
       .ant-form-item {
          display: block;
       }
 
-      .sign-link {
+      .sign-link { 
          margin-bottom: 24px;
       }
 
       h2 {
+         @include font(24px, 500, 'arial-medium');
          margin-bottom: 24px;
       }
    }

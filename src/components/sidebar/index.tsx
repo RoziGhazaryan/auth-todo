@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Menu } from 'antd';
 import {
@@ -9,6 +9,14 @@ import {
 import './style.scss';
 
 const Sidebar: FC = () => {
+
+   // useState
+   const [matches, setMatches] = useState(window.matchMedia("(max-width: 767.98px)").matches);
+
+   useEffect(() => {
+      const handler = (e: any) => setMatches( e.matches);
+      window.matchMedia("(max-width: 767.98px)").addEventListener('change', handler);
+   }, [])
 
    const history = useHistory();
    const location = useLocation();
@@ -23,18 +31,20 @@ const Sidebar: FC = () => {
    return (
       <div className="sidebar">
          <Menu
-            defaultSelectedKeys={[location.pathname]}
+            defaultSelectedKeys={['/add-todo']}
+            selectedKeys={[location.pathname]}
             mode="inline"
             theme="dark"
+            inlineCollapsed={matches}
          >
-            <Menu.Item key="/todo-list" icon={<UnorderedListOutlined />}>
-               <Link to='/todo-list'>
-                  My Todo List
-               </Link>
-            </Menu.Item>
             <Menu.Item key="/add-todo" icon={<FileAddOutlined />}>
                <Link to='/add-todo'>
                   Add todo
+               </Link>
+            </Menu.Item>
+            <Menu.Item key="/todo-list" icon={<UnorderedListOutlined />}>
+               <Link to='/todo-list'>
+                  My Todo List
                </Link>
             </Menu.Item>
             <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={logOut}>

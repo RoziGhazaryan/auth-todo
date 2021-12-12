@@ -3,8 +3,9 @@ import { Button, Input } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { useAppDispatch } from "../../hooks/redux";
 import { userSlice } from "../../store/reducers/UserSlice";
-import './style.scss';
 import moment from "moment";
+import './style.scss';
+import './responsive.scss';
 
 const AddTodo: FC = () => {
 
@@ -27,8 +28,6 @@ const AddTodo: FC = () => {
    let user = users.find((el: any) => +(el.id) === userId);
 
    const todoObj = { id: user.todoId + 1, status: 'active', name, description, creationDate: moment().format('YYYY-MM-DD HH:mm:ss') };
-
-   console.log("moment", moment("2021-12-12 18:30:15").fromNow());
 
    // on change values
    const onChangeName = (e: any) => {

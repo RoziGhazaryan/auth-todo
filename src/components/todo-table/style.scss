@@ -1,4 +1,3 @@
-.todo-table {
-   width: 50%;
-   padding: 0 16px;
+.todo-table + .todo-table {
+   padding-top: 16px;
 }

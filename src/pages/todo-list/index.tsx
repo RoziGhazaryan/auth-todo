@@ -4,7 +4,7 @@ import { userSlice } from "../../store/reducers/UserSlice";
 import TodoTable from '../../components/todo-table';
 import './style.scss';
 
-const Home: FC = () => {
+const TodoList: FC = () => {
   // useDispatch
   const dispatch = useAppDispatch();
 
@@ -65,4 +65,4 @@ const Home: FC = () => {
     </div >
   )
 }
-export default Home
+export default TodoList;

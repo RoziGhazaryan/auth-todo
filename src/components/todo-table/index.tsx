@@ -57,7 +57,7 @@ const TodoTable: FC<TableProps> = (
          key: 'id',
          title: 'Created at',
          dataIndex: 'creationDate',
-         render: (creationDate) => <div>{moment(creationDate).fromNow()}</div>,
+         render: (creationDate) => <h4>{moment(creationDate).fromNow()}</h4>,
          sorter: (a: any, b: any) => moment(a.creationDate).unix() - moment(b.creationDate).unix(),
       },
       {
@@ -76,7 +76,7 @@ const TodoTable: FC<TableProps> = (
    useEffect(() => {
       const pageData = allData.slice((current - 1) * pageSize, current * pageSize);
       setData(pageData);
-   }, [allData])
+   }, [allData, current, pageSize])
 
    return (
       <div className='todo-table'>
