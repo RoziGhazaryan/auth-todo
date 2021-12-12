@@ -15,7 +15,7 @@ const SignUp: FC = () => {
       const users = JSON.parse(usersStr);
       const userId = JSON.parse(userIdStr) + 1;
 
-      users.push({ id: userId, ...values, todoId: 0, todo: [] });
+      users.push({ id: userId, ...values, todoId: 0, todo: [], tokens: [] });
 
       localStorage.setItem('userId', userId);
       localStorage.setItem('users', JSON.stringify(users));

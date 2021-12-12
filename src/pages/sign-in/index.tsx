@@ -28,8 +28,13 @@ const SignIn: FC = () => {
     if (!users || !isUserExist) {
       message.error("User doesn't exist");
     } else {
-      sessionStorage.setItem('token', JSON.stringify(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)));
-      sessionStorage.setItem('userId', JSON.stringify(values.id));
+      const token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      sessionStorage.setItem('token', token);
+
+      const userIndex = users.findIndex((el: any) => el.id === values.id);
+      users[userIndex].tokens.push(token);
+      localStorage.setItem('users', JSON.stringify(users));
+
       history.push('/');
       window.location.reload();
     }

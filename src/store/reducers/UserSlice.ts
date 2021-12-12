@@ -14,6 +14,7 @@ const initialState: UserState = {
       password: '',
       todoId: 0,
       todo: [],
+      tokens: [],
    },
    isLoading: false,
    error: '',
@@ -32,9 +33,8 @@ export const userSlice = createSlice({
    reducers: {
       refreshUserData(state) {
          const users = getUsers();
-         const userIdStr = sessionStorage.getItem('userId') as string;
-         const userId = JSON.parse(userIdStr);
-         const user = users.find((el: any) => el.id === userId);
+         const token = sessionStorage.getItem('token') as string;
+         const user = users.find((el: any) => el.tokens.includes(token));
          
          state.userState = user;
       },
@@ -85,7 +85,7 @@ export const userSlice = createSlice({
          user.todo = user.todo.filter((el: any) => el.name.includes(action.payload) || el.description.includes(action.payload))
      
          state.userState = user;
-      }
+      },
    },
 })
 

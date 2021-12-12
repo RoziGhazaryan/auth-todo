@@ -14,7 +14,7 @@ const Sidebar: FC = () => {
    const [matches, setMatches] = useState(window.matchMedia("(max-width: 767.98px)").matches);
 
    useEffect(() => {
-      const handler = (e: any) => setMatches( e.matches);
+      const handler = (e: any) => setMatches(e.matches);
       window.matchMedia("(max-width: 767.98px)").addEventListener('change', handler);
    }, [])
 
@@ -22,9 +22,20 @@ const Sidebar: FC = () => {
    const location = useLocation();
 
    const logOut = () => {
+      const usersStr = localStorage.getItem('users') as string;
+      const users = JSON.parse(usersStr);
+      const token = sessionStorage.getItem('token');
+      const userIndex = users.findIndex((el: any) => el.tokens.includes(token));
+      
+      users[userIndex].tokens.splice(users[userIndex].tokens.indexOf(token), 1);
+
+      localStorage.setItem('users', JSON.stringify(users));
+      
       sessionStorage.removeItem('token');
       sessionStorage.removeItem('user');
+      
       window.location.reload();
+      
       history.push('/sign-in');
    }
 

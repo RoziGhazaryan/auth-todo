@@ -19,13 +19,12 @@ const AddTodo: FC = () => {
    const [name, setName] = useState<string>('');
    const [description, setDescription] = useState<string>('');
 
-   let usersStr = localStorage.getItem('users') as string;
-   let users = JSON.parse(usersStr);
+   const usersStr = localStorage.getItem('users') as string;
+   const users = JSON.parse(usersStr);
 
-   const userIdStr = sessionStorage.getItem('userId') as string;
-   const userId = JSON.parse(userIdStr);
+   const token = sessionStorage.getItem('token') as string;
 
-   let user = users.find((el: any) => +(el.id) === userId);
+   const user = users.find((el: any) => el.tokens?.includes(token));
 
    const todoObj = { id: user.todoId + 1, key: user.todoId + 1, status: 'active', name, description, creationDate: moment().format('YYYY-MM-DD HH:mm:ss') };
 

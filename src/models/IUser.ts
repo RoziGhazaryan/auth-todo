@@ -4,4 +4,5 @@ export interface IUser {
    password: string;
    todoId: number;
    todo: any;
+   tokens: any,
 }
