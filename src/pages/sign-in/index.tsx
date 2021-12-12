@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Button, Form, Input, message } from "antd";
 import { Link, useHistory } from "react-router-dom";
-import '../../styles/sign-form.scss';
+import '../../assets/styles/sign-form.scss';
 
 const SignIn: FC = () => {
 
@@ -27,7 +27,7 @@ const SignIn: FC = () => {
     if (!users || !isUserExist) {
       message.error("User doesn't exist");
     } else {
-      sessionStorage.setItem('token', "asdfghjkl");
+      sessionStorage.setItem('token', JSON.stringify(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)));
       sessionStorage.setItem('userId', JSON.stringify(values.id));
       history.push('/');
       window.location.reload();
