@@ -1,7 +1,7 @@
 import React from "react";
-import SignIn from "../pages/sign-in";
-import Home from "../pages/home";
 import SignUp from "../pages/sign-up";
+import SignIn from "../pages/sign-in";
+import TodoList from "../pages/todo-list";
 import AddTodo from "../pages/add-todo";
 
 export interface IRoute {
@@ -13,11 +13,11 @@ export interface IRoute {
 export enum RouteNames {
   SIGN_UP = '/sign-up',
   SIGN_IN = '/sign-in',
-  HOME = '/todo-list',
+  TODO_LIST = '/todo-list',
   ADD_TODO = '/add-todo',
 }
 
-export const publicRoute: IRoute[] = [
+export const publicRoutes: IRoute[] = [
   {
     path: RouteNames.SIGN_UP,
     component: SignUp,
@@ -30,10 +30,10 @@ export const publicRoute: IRoute[] = [
   },
 ]
 
-export const privateRoute: IRoute[] = [
+export const privateRoutes: IRoute[] = [
   {
-    path: RouteNames.HOME,
-    component: Home,
+    path: RouteNames.TODO_LIST,
+    component: TodoList,
     exact: true,
   },
   {

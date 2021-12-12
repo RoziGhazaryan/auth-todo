@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { privateRoute, publicRoute, RouteNames } from "../../router";
+import { privateRoutes, publicRoutes, RouteNames } from "../../router";
 import Sidebar from '../sidebar';
 import './style.scss';
 
@@ -16,20 +16,20 @@ function AppRouter() {
             <div className='public-pages'>
               <Sidebar />
               <Switch>
-                {privateRoute.map(route =>
+                {privateRoutes.map(route =>
                   <Route path={route.path}
                     exact={route.exact}
                     component={route.component}
                     key={route.path}
                   />
                 )}
-                <Redirect to={RouteNames.HOME} />
+                <Redirect to={RouteNames.TODO_LIST} />
               </Switch>
             </div>
             :
             <div className='private-pages'>
               <Switch>
-                {publicRoute.map(route =>
+                {publicRoutes.map(route =>
                   <Route path={route.path}
                     exact={route.exact}
                     component={route.component}
