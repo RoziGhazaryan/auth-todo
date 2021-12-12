@@ -4,6 +4,7 @@ import TextArea from "antd/lib/input/TextArea";
 import { useAppDispatch } from "../../hooks/redux";
 import { userSlice } from "../../store/reducers/UserSlice";
 import './style.scss';
+import moment from "moment";
 
 const AddTodo: FC = () => {
 
@@ -14,7 +15,7 @@ const AddTodo: FC = () => {
    const { refreshUserData, addTodo } = userSlice.actions;
 
    // useState
-   const [title, setTitle] = useState<string>('');
+   const [name, setName] = useState<string>('');
    const [description, setDescription] = useState<string>('');
 
    let usersStr = localStorage.getItem('users') as string;
@@ -25,11 +26,13 @@ const AddTodo: FC = () => {
 
    let user = users.find((el: any) => +(el.id) === userId);
 
-   const todoObj = { id: user.todoId + 1, status: 'active', title, description };
+   const todoObj = { id: user.todoId + 1, status: 'active', name, description, creationDate: moment().format('YYYY-MM-DD HH:mm:ss') };
+
+   console.log("moment", moment("2021-12-12 18:30:15").fromNow());
 
    // on change values
-   const onChangeTitle = (e: any) => {
-      setTitle(e.target.value);
+   const onChangeName = (e: any) => {
+      setName(e.target.value);
    }
 
    const onChangeDescription = (e: any) => {
@@ -40,12 +43,12 @@ const AddTodo: FC = () => {
       setDescription('');
       dispatch(refreshUserData());
       dispatch(addTodo(todoObj));
-      setTitle('');
+      setName('');
       setDescription('');
    }
 
    const onKeyDown = (e: any) => {
-      if (e.key === 'Enter' && title && description) {
+      if (e.key === 'Enter' && name && description) {
          onAddTodo();
       }
    }
@@ -53,15 +56,15 @@ const AddTodo: FC = () => {
    return (
       <div className="g-page">
          <div className="add-todo">
-            <div className="add-todo--title">
-               <Input value={title} onChange={onChangeTitle} onKeyDown={onKeyDown} />
+            <div className="add-todo--name">
+               <Input value={name} onChange={onChangeName} onKeyDown={onKeyDown} />
             </div>
             <div className="add-todo--descr">
                <TextArea value={description} onChange={onChangeDescription} onKeyDown={onKeyDown} />
             </div>
             <div className="add-todo--btn">
                <Button onClick={onAddTodo}
-                  disabled={!title || !description}
+                  disabled={!name || !description}
                   type="primary"
                > Add Todo
                </Button>

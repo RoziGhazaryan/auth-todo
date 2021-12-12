@@ -2,9 +2,10 @@ import { FC, useEffect, useState } from 'react';
 import { Button, Pagination, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import './style.scss';
+import moment from 'moment';
 interface Todo {
    id: number;
-   title: string,
+   name: string,
    description: string;
    status: string,
 }
@@ -30,11 +31,15 @@ const TodoTable: FC<TableProps> = (
       onChangeStatus,
       deleteTodo,
    }) => {
+
    const columns: ColumnsType<Todo> = [
       {
          key: 'id',
-         title: 'Title',
-         dataIndex: 'title',
+         title: 'Name',
+         dataIndex: 'name',
+         sorter: {
+            compare: (a: any, b: any) => a.name.localeCompare(b.name),
+         },
       },
       {
          key: 'id',
@@ -44,7 +49,16 @@ const TodoTable: FC<TableProps> = (
       {
          key: 'id',
          title: 'Status',
-         render: ({ id, status }) => <Button onClick={() => onChangeStatus({ id, status })}>{status}</Button>,
+         render: ({ id, status }) => (
+            <Button onClick={() => onChangeStatus({ id, status })}>{status}</Button>
+         )
+      },
+      {
+         key: 'id',
+         title: 'Created at',
+         dataIndex: 'creationDate',
+         render: (creationDate) => <div>{moment(creationDate).fromNow()}</div>,
+         sorter: (a: any, b: any) => moment(a.creationDate).unix() - moment(b.creationDate).unix(),
       },
       {
          key: 'id',
@@ -60,8 +74,8 @@ const TodoTable: FC<TableProps> = (
    }
 
    useEffect(() => {
-      const d = allData.slice((current - 1) * pageSize, current * pageSize);
-      setData(d);
+      const pageData = allData.slice((current - 1) * pageSize, current * pageSize);
+      setData(pageData);
    }, [allData])
 
    return (

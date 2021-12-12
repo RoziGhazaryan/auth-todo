@@ -47,7 +47,7 @@ const Home: FC = () => {
           current={currentActive}
           setCurrent={setCurrentActive}
           total={activeData.length}
-          pageSize={2}
+          pageSize={9}
           onChangeStatus={onChangeStatus}
           deleteTodo={deleteUserTodo}
         />
