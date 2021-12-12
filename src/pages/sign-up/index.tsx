@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react";
 import { Button, Form, Input } from "antd";
-import '../../styles/sign-form.scss';
 import { Link, useHistory } from "react-router-dom";
+import '../../assets/styles/sign-form.scss';
 
 const SignUp: FC = () => {
 
@@ -55,7 +55,25 @@ const SignUp: FC = () => {
             <Form.Item
                label="Password"
                name="password"
-               rules={[{ required: true, message: 'Please input your password!' }]}
+               rules={[{ required: true, message: 'Please set your password!' }]}
+            >
+               <Input.Password />
+            </Form.Item>
+
+            <Form.Item
+               label="Confirm Password"
+               name="confirmPassword"
+               rules={[
+                  { required: true, message: 'Please confirm your password!' },
+                  ({ getFieldValue }) => ({
+                     validator(_, value) {
+                       if (!value || getFieldValue('password') === value) {
+                         return Promise.resolve();
+                       }
+                       return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                     },
+                   }),
+               ]}
             >
                <Input.Password />
             </Form.Item>
