@@ -1,0 +1,15 @@
+@media (max-width: 767.98px) {
+   .add-todo {
+      max-width: 100%;
+   }
+}
+
+@media (max-width: 575.98px) {
+   .add-todo {
+      padding: 16px;
+      
+      .add-todo--name {
+         height: 40px;
+      }
+   } 
+}
