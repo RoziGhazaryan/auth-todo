@@ -1,4 +1,3 @@
-import { Button, Input } from "antd";
 import { FC, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { userSlice } from "../../store/reducers/UserSlice";
@@ -10,15 +9,14 @@ const Home: FC = () => {
   const dispatch = useAppDispatch();
 
   // actions
-  const { refreshUserData, addTodo, changeTodoStatus } = userSlice.actions;
+  const { refreshUserData, changeTodoStatus } = userSlice.actions;
 
   // useSelector
   const { userState } = useAppSelector(state => state.userReducer);
 
   // useState
-  const [current, setCurrent] = useState(1);
-
-  // storage
+  const [currentActive, setCurrentActive] = useState(1);
+  const [currentCompleted, setCurrentCompleted] = useState(1);
 
   useEffect(() => {
     dispatch(refreshUserData());
@@ -33,24 +31,27 @@ const Home: FC = () => {
     ));
   };
 
+  const activeData = userState.todo.filter((el: any) => el.status === 'active');
+  const completedData = userState.todo.filter((el: any) => el.status === 'completed');
+
   return (
     <div className="g-page">
       <div className="todo-tables">
         <TodoTable
           title='Active'
-          allData={userState.todo}
-          current={current}
-          setCurrent={setCurrent}
-          total={userState.todo.length}
+          allData={activeData}
+          current={currentActive}
+          setCurrent={setCurrentActive}
+          total={activeData.length}
           pageSize={2}
           onChangeStatus={onChangeStatus}
         />
         <TodoTable
           title='Completed'
-          allData={userState.todo}
-          current={current}
-          setCurrent={setCurrent}
-          total={userState.todo.length}
+          allData={completedData}
+          current={currentCompleted}
+          setCurrent={setCurrentCompleted}
+          total={completedData.length}
           pageSize={2}
           onChangeStatus={onChangeStatus}
         />

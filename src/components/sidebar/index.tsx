@@ -20,10 +20,6 @@ const Sidebar: FC = () => {
       history.push('/sign-in');
    }
 
-   useEffect(() => {
-      console.log(location.pathname);
-   }, [location.pathname]);
-
    return (
       <div className="sidebar">
          <Menu

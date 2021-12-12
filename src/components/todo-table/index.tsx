@@ -45,8 +45,6 @@ const TodoTable: FC<TableProps> = ({ title, allData, current, setCurrent, total,
       setCurrent(page);
    }
 
-   console.log(allData, data);
-
    useEffect(() => {
       const d = allData.slice((current - 1) * pageSize, current * pageSize);
       setData(d);

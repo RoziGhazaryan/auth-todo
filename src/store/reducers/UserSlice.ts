@@ -54,7 +54,6 @@ export const userSlice = createSlice({
          const userIndex = users.findIndex((el: any) => el.id === userState.id);
          const user = users[userIndex];
          const todo = user.todo.find((el:any) => el.id === action.payload.id);
-         console.log(todo);
          todo.status = action.payload.status;
          localStorage.setItem('users', JSON.stringify(users));
 
