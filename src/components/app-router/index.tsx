@@ -13,7 +13,7 @@ function AppRouter() {
       <div className='g-pages'>
         {
           token ?
-            <div className='public-pages'>
+            <div className='private-pages d_flex'>
               <Sidebar />
               <Switch>
                 {privateRoutes.map(route =>
@@ -27,7 +27,7 @@ function AppRouter() {
               </Switch>
             </div>
             :
-            <div className='private-pages'>
+            <div className='public-pages'>
               <Switch>
                 {publicRoutes.map(route =>
                   <Route path={route.path}

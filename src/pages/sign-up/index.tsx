@@ -36,8 +36,8 @@ const SignUp: FC = () => {
    }, [])
 
    return (
-      <div className="sign-form">
-         <Form
+      <div className="sign-form d_flex a_items_center j_content_center">
+      <Form
             name="basic"
             initialValues={{ remember: true }}
             onFinish={onFinish}

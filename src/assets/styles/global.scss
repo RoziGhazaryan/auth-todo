@@ -1,5 +1,6 @@
 @import './mixins';
 @import '../fonts/fonts';
+@import './flexbox';
 
 .g-pages {
    .ant-btn-primary {
@@ -22,11 +23,6 @@
    @media (max-width: 991.98px) {
       padding: 16px;
    }
-}
-
-.g-sidebar--page {
-   display: flex;
-   height: 100vh;
 }
 
 ::-webkit-scrollbar {
