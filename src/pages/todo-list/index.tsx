@@ -3,13 +3,14 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { userSlice } from "../../store/reducers/UserSlice";
 import TodoTable from '../../components/todo-table';
 import './style.scss';
+import Search from "antd/lib/input/Search";
 
 const TodoList: FC = () => {
   // useDispatch
   const dispatch = useAppDispatch();
 
   // actions
-  const { refreshUserData, changeTodoStatus, deleteTodo } = userSlice.actions;
+  const { refreshUserData, changeTodoStatus, deleteTodo, searchTodo } = userSlice.actions;
 
   // useSelector
   const { userState } = useAppSelector(state => state.userReducer);
@@ -38,8 +39,13 @@ const TodoList: FC = () => {
   const activeData = userState.todo.filter((el: any) => el.status === 'active');
   const completedData = userState.todo.filter((el: any) => el.status === 'completed');
 
+  const onSearch = (e: any) => {
+    dispatch(searchTodo(e.target.value));
+  }
+
   return (
     <div className="g-page">
+      <Search onChange={onSearch} />
       <div className="todo-tables">
         <TodoTable
           title='Active Todos'

@@ -76,6 +76,15 @@ export const userSlice = createSlice({
          localStorage.setItem('users', JSON.stringify(users));
 
          state.userState = user;
+      },
+      searchTodo(state, action:PayloadAction<any>) {
+         const { userState } = state;
+         const users = getUsers();
+         const userIndex = users.findIndex((el: any) => el.id === userState.id);
+         const user = users[userIndex];
+         user.todo = user.todo.filter((el: any) => el.name.includes(action.payload) || el.description.includes(action.payload))
+     
+         state.userState = user;
       }
    },
 })

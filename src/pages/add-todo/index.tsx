@@ -27,7 +27,7 @@ const AddTodo: FC = () => {
 
    let user = users.find((el: any) => +(el.id) === userId);
 
-   const todoObj = { id: user.todoId + 1, status: 'active', name, description, creationDate: moment().format('YYYY-MM-DD HH:mm:ss') };
+   const todoObj = { id: user.todoId + 1, key: user.todoId + 1, status: 'active', name, description, creationDate: moment().format('YYYY-MM-DD HH:mm:ss') };
 
    // on change values
    const onChangeName = (e: any) => {
