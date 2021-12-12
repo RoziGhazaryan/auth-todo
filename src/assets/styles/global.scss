@@ -55,3 +55,7 @@
 .ant-row:last-child {
    margin-bottom: 0;
 }
+
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+   background-color: $staticColor;
+}

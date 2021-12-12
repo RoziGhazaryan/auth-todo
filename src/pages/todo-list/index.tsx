@@ -42,7 +42,7 @@ const TodoList: FC = () => {
     <div className="g-page">
       <div className="todo-tables">
         <TodoTable
-          title='Active'
+          title='Active Todos'
           allData={activeData}
           current={currentActive}
           setCurrent={setCurrentActive}
@@ -52,7 +52,7 @@ const TodoList: FC = () => {
           deleteTodo={deleteUserTodo}
         />
         <TodoTable
-          title='Completed'
+          title='Completed Todos'
           allData={completedData}
           current={currentCompleted}
           setCurrent={setCurrentCompleted}

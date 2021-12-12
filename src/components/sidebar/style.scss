@@ -1,7 +1,11 @@
 .sidebar {
    height: 100%;
-   background: #001529;
+   background: #001313;
    padding: 12px 0;
+
+   .ant-menu.ant-menu-dark {
+      background: #001313;
+   }
 
    .ant-menu-inline .ant-menu-item {
       padding-right: 24px;
