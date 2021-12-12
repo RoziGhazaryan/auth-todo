@@ -40,17 +40,12 @@ const SignIn: FC = () => {
     }
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
-
   return (
     <div className="sign-form d_flex a_items_center j_content_center">
       <Form
         name="basic"
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <h2>Sign in</h2>

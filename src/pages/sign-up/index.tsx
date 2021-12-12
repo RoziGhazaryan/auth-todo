@@ -9,7 +9,6 @@ const SignUp: FC = () => {
    const history = useHistory();
 
    const onFinish = (values: any) => {
-      console.log('Success:', values);
       const usersStr = localStorage.getItem('users') as string;
       const userIdStr = localStorage.getItem('userId') as string;
       const users = JSON.parse(usersStr);
@@ -22,11 +21,7 @@ const SignUp: FC = () => {
 
       history.push('/sign-in');
    };
-
-   const onFinishFailed = (errorInfo: any) => {
-      console.log('Failed:', errorInfo);
-   };
-
+   
    useEffect(() => {
       const users = localStorage.getItem('users');
       if (!users) {
@@ -41,7 +36,6 @@ const SignUp: FC = () => {
             name="basic"
             initialValues={{ remember: true }}
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
             autoComplete="off"
          >
             <h2>Sign up</h2>
