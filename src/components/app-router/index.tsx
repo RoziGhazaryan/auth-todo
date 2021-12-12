@@ -23,7 +23,7 @@ function AppRouter() {
                     key={route.path}
                   />
                 )}
-                <Redirect to={RouteNames.TODO_LIST} />
+                <Redirect to={RouteNames.ADD_TODO} />
               </Switch>
             </div>
             :
