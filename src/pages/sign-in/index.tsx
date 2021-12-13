@@ -1,15 +1,17 @@
-import React, { FC, useEffect } from "react";
+import { FC } from "react";
 import { Button, Form, Input, message } from "antd";
 import { Link, useHistory } from "react-router-dom";
 import '../../assets/styles/sign-form.scss';
 import '../../assets/styles/sign-form-responsive.scss';
 
 const SignIn: FC = () => {
-
+  // useHistory
   const history = useHistory();
 
+  // variable
   let isUserExist = false;
 
+  // sign in
   const onFinish = (values: any) => {
     const usersStr = localStorage.getItem('users') as string;
     const users = JSON.parse(usersStr);
@@ -44,7 +46,7 @@ const SignIn: FC = () => {
     <div className="sign-form d_flex a_items_center j_content_center">
       <Form
         name="basic"
-        initialValues={{ remember: true }}
+        initialValues={{remember: true}}
         onFinish={onFinish}
         autoComplete="off"
       >
@@ -52,23 +54,20 @@ const SignIn: FC = () => {
         <Form.Item
           label="Login"
           name="login"
-          rules={[{ required: true, message: 'Please input your login!' }]}
+          rules={[{required: true, message: 'Please input your login!'}]}
         >
           <Input />
         </Form.Item>
-
         <Form.Item
           label="Password"
           name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          rules={[{required: true, message: 'Please input your password!'}]}
         >
           <Input.Password />
         </Form.Item>
-
         <div className="sign-link">
           <Link to='/sign-up'>Sign up here</Link>
         </div>
-
         <Form.Item>
           <Button type="primary" htmlType="submit">
             Submit

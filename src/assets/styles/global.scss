@@ -3,90 +3,90 @@
 @import './flexbox';
 
 .g-pages {
-   .ant-btn-primary {
-      background: $staticColor;
-      border-color: unset;
-      border-radius: $staticRadius;
-      @include wh(109px, 36px);
+  .ant-btn-primary {
+    background: $staticColor;
+    border-color: unset;
+    border-radius: $staticRadius;
+    @include wh(109px, 36px);
 
-      &:disabled {
-         background: #dddddd;
-      }
-   }
+    &:disabled {
+      background: #dddddd;
+    }
+  }
 }
 
 .g-page {
-   width: 100%;
-   padding: 24px;
+  width: 100%;
+  padding: 24px;
 
-   @media (max-width: 991.98px) {
-      padding: 16px;
-   }
+  @media (max-width: 991.98px) {
+    padding: 16px;
+  }
 }
 
 ::-webkit-scrollbar {
-   @include wh(6px, 4px);
-   transition: .3s;
- }
-  
+  @include wh(6px, 4px);
+  transition: .3s;
+}
+
 ::-webkit-scrollbar-thumb {
-  background: rgb(139, 134, 134); 
+  background: rgb(139, 134, 134);
   border-radius: $staticRadius;
 
   &:hover {
-     background: rgb(137, 140, 167); 
+    background: rgb(137, 140, 167);
   }
 }
 
 .ant-input:focus, .ant-input-focused, .ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused {
-   border-color: $staticColor;
-   box-shadow: 0 0 0 2px rgb(24 71 46 / 20%);
+  border-color: $staticColor;
+  box-shadow: 0 0 0 2px rgb(24 71 46 / 20%);
 }
 
 .ant-input:hover, .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
-   border-color: $staticColor;
+  border-color: $staticColor;
 }
 
 .ant-input, .ant-input-affix-wrapper {
-   border-radius: $staticRadius;
+  border-radius: $staticRadius;
 }
 
 .ant-row:last-child {
-   margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
-   background-color: $staticColor;
+  background-color: $staticColor;
 }
 
 .ant-pagination {
-   margin-top: 16px;
-   margin-bottom: 16px;
+  margin-top: 16px;
+  margin-bottom: 16px;
 
-   .ant-pagination-item {
-      &:focus-visible, &:hover {
-         border-color: $staticColor;
-
-         a {
-            color: $staticColor;
-         }
-      }
-   }
-
-   .ant-pagination-item.ant-pagination-item-active {
+  .ant-pagination-item {
+    &:focus-visible, &:hover {
       border-color: $staticColor;
-      background-color: $staticColor;
 
       a {
-         color: #ffffff;
+        color: $staticColor;
       }
-   }
+    }
+  }
 
-   .ant-pagination-prev:focus-visible .ant-pagination-item-link, 
-   .ant-pagination-next:focus-visible .ant-pagination-item-link, 
-   .ant-pagination-prev:hover .ant-pagination-item-link, 
-   .ant-pagination-next:hover .ant-pagination-item-link {
-      color: $staticColor;
-      border-color: $staticColor;
-   }
+  .ant-pagination-item.ant-pagination-item-active {
+    border-color: $staticColor;
+    background-color: $staticColor;
+
+    a {
+      color: #ffffff;
+    }
+  }
+
+  .ant-pagination-prev:focus-visible .ant-pagination-item-link,
+  .ant-pagination-next:focus-visible .ant-pagination-item-link,
+  .ant-pagination-prev:hover .ant-pagination-item-link,
+  .ant-pagination-next:hover .ant-pagination-item-link {
+    color: $staticColor;
+    border-color: $staticColor;
+  }
 }

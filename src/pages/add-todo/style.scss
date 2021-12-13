@@ -1,32 +1,32 @@
 @import "../../assets/styles/mixins";
 
 .add-todo {
-   @include maxWidth(520px);
-   min-height: 264px;
-   box-shadow: 0px 0px 11px 5px rgba(220,220,224,1);
-   border-radius: $staticRadius;
-   padding: 32px 16px;
+  @include maxWidth(520px);
+  min-height: 264px;
+  box-shadow: 0px 0px 11px 5px rgba(220, 220, 224, 1);
+  border-radius: $staticRadius;
+  padding: 32px 16px;
 
-   .add-todo--name {
-      height: 48px;
+  .add-todo--name {
+    height: 48px;
 
-      input {
-         height: 100%;
-      }
-   }
+    input {
+      height: 100%;
+    }
+  }
 
-   .add-todo--descr {
-      height: 160px;
-      margin-top: 16px;
-      margin-bottom: 16px;
+  .add-todo--descr {
+    height: 160px;
+    margin-top: 16px;
+    margin-bottom: 16px;
 
-      textarea {
-         padding: 12px;
-         height: 100%;
-      }
-   }
+    textarea {
+      padding: 12px;
+      height: 100%;
+    }
+  }
 
-   .add-todo--btn button {
-      @include wh(100%, 48px);
-   }
+  .add-todo--btn button {
+    @include wh(100%, 48px);
+  }
 }

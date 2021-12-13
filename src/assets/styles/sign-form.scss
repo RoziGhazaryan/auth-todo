@@ -1,25 +1,25 @@
 @import "./mixins";
 
 .sign-form {
-   height: 100vh;
+  height: 100vh;
 
-   form {
-      width: 400px;
-      padding: 48px 32px;
-      border-radius: $staticRadius;
-      box-shadow: 0 0 48px -9px $staticColor;
+  form {
+    width: 400px;
+    padding: 48px 32px;
+    border-radius: $staticRadius;
+    box-shadow: 0 0 48px -9px $staticColor;
 
-      .ant-form-item {
-         display: block;
-      }
+    .ant-form-item {
+      display: block;
+    }
 
-      .sign-link { 
-         margin-bottom: 24px;
-      }
+    .sign-link {
+      margin-bottom: 24px;
+    }
 
-      h2 {
-         @include font(24px, 500, 'arial-medium');
-         margin-bottom: 24px;
-      }
-   }
+    h2 {
+      @include font(24px, 500, 'arial-medium');
+      margin-bottom: 24px;
+    }
+  }
 }
