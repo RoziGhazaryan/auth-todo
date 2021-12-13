@@ -7,8 +7,7 @@
       background: $staticColor;
       border-color: unset;
       border-radius: $staticRadius;
-      width: 109px;
-      height: 36px;   
+      @include wh(109px, 36px);
 
       &:disabled {
          background: #dddddd;
@@ -26,8 +25,7 @@
 }
 
 ::-webkit-scrollbar {
-   width: 6px;
-   height: 4px;
+   @include wh(6px, 4px);
    transition: .3s;
  }
   
