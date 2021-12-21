@@ -21,8 +21,6 @@ const useSidebar = () => {
   // useLocation
   const location = useLocation();
 
-  console.log("*******", location);
-
   // logout function
   const logOut = () => {
     // localStorage

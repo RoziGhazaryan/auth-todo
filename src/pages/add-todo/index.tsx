@@ -1,9 +1,9 @@
 import { ChangeEventHandler, FC } from "react";
 import { Button, Input } from "antd";
 import TextArea from "antd/lib/input/TextArea";
+import useAddTodo from "./useAddTodo";
 import "./style.scss";
 import "./responsive.scss";
-import useAddTodo from "./useAddTodo";
 
 const AddTodo: FC = () => {
   const {
@@ -18,8 +18,8 @@ const AddTodo: FC = () => {
     description: string;
     onChangeName: ChangeEventHandler;
     onChangeDescription: ChangeEventHandler;
-    onKeyDown: any;
-    onAddTodo: any;
+    onKeyDown: (e: { key: string }) => void;
+    onAddTodo: () => void;
   } = useAddTodo();
 
   return (
@@ -48,7 +48,6 @@ const AddTodo: FC = () => {
             disabled={!name || !description}
             type="primary"
           >
-            {" "}
             Add Todo
           </Button>
         </div>

@@ -19,7 +19,7 @@ const useAddTodo = () => {
   const users = JSON.parse(usersStr);
   const token = sessionStorage.getItem("token") as string;
 
-  const user = users.find((el: any) => el.tokens?.includes(token));
+  const user = users.find((el: {tokens: Array<string>}) => el.tokens?.includes(token));
 
   interface TodoObj {
     id: number;
@@ -42,13 +42,16 @@ const useAddTodo = () => {
   }, [user.todoId, name, description]);
 
   // on change values
-  const onChangeName = useCallback((e: any) => {
+  const onChangeName = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   }, []);
 
-  const onChangeDescription = useCallback((e: any) => {
-    setDescription(e.target.value);
-  }, []);
+  const onChangeDescription = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setDescription(e.target.value);
+    },
+    []
+  );
 
   // add todo
   const onAddTodo = useCallback(() => {
@@ -59,7 +62,7 @@ const useAddTodo = () => {
     setDescription("");
   }, [dispatch, addTodo, refreshUserData, todoObj]);
 
-  const onKeyDown = (e: any) => {
+  const onKeyDown = (e: { key: string }) => {
     if (e.key === "Enter" && name && description) {
       onAddTodo();
     }
