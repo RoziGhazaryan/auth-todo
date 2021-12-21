@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { ITodo } from "../../models/ITodo";
 import { ITodoObject } from "../../models/ITodoObject";
 import { userSlice } from "../../store/reducers/UserSlice";
 
@@ -46,12 +47,12 @@ const useTodoList = () => {
 
   // filter by status
   const activeData = useMemo(
-    () => userState.todo.filter((el: any) => el.status === "active"),
+    () => userState.todo.filter((el: ITodo) => el.status === "active"),
     [userState.todo]
   );
 
   const completedData = useMemo(
-    () => userState.todo.filter((el: any) => el.status === "completed"),
+    () => userState.todo.filter((el: ITodo) => el.status === "completed"),
     [userState.todo]
   );
 

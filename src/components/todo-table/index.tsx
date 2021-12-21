@@ -24,8 +24,7 @@ const TodoTable: FC<ITableProps> = ({
       title: "Name",
       dataIndex: "name",
       sorter: {
-        compare: (a: any, b: any) =>
-          a.name.localeCompare(b.name),
+        compare: (a: any, b: any) => a.name.localeCompare(b.name),
       },
     },
     {

@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IAction } from "../../models/IAction";
 import { IUserState } from "../../models/IUserState";
 
 const initialState: IUserState = {
@@ -35,10 +36,12 @@ export const userSlice = createSlice({
       state.userState = user;
     },
 
-    addTodo(state, action: PayloadAction<any>) {
+    addTodo(state, action: PayloadAction<IAction>) {
       const { userState } = state;
       const users = getUsers();
-      const userIndex = users.findIndex((el: any) => el.id === userState.id);
+      const userIndex = users.findIndex(
+        (el: IAction) => el.id === userState.id
+      );
       const user = users[userIndex];
 
       user.todo.push(action.payload);
@@ -49,16 +52,14 @@ export const userSlice = createSlice({
       state.userState = user;
     },
 
-    changeTodoStatus(state, action: PayloadAction<any>) {
+    changeTodoStatus(state, action: PayloadAction<IAction>) {
       const { userState } = state;
       const users = getUsers();
       const userIndex = users.findIndex(
-        (el: { id: number }) => el.id === userState.id
+        (el: IAction) => el.id === userState.id
       );
       const user = users[userIndex];
-      const todo = user.todo.find(
-        (el: { id: number }) => el.id === action.payload.id
-      );
+      const todo = user.todo.find((el: IAction) => el.id === action.payload.id);
 
       todo.status = action.payload.status;
 
@@ -67,16 +68,14 @@ export const userSlice = createSlice({
       state.userState = user;
     },
 
-    deleteTodo(state, action: PayloadAction<any>) {
+    deleteTodo(state, action: PayloadAction<IAction>) {
       const { userState } = state;
       const users = getUsers();
       const userIndex = users.findIndex(
-        (el: { id: number }) => el.id === userState.id
+        (el: IAction) => el.id === userState.id
       );
       const user = users[userIndex];
-      const todo = user.todo.find(
-        (el: { id: number }) => el.id === action.payload.id
-      );
+      const todo = user.todo.find((el: IAction) => el.id === action.payload.id);
 
       user.todo.splice(user.todo.indexOf(todo), 1);
 
@@ -85,11 +84,11 @@ export const userSlice = createSlice({
       state.userState = user;
     },
 
-    searchTodo(state, action: PayloadAction<any>) {
+    searchTodo(state, action: PayloadAction<string>) {
       const { userState } = state;
       const users = getUsers();
       const userIndex = users.findIndex(
-        (el: { id: number }) => el.id === userState.id
+        (el: IAction) => el.id === userState.id
       );
       const user = users[userIndex];
       user.todo = user.todo.filter(
