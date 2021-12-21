@@ -4,9 +4,14 @@ import { Link } from "react-router-dom";
 import "../../assets/styles/sign-form.scss";
 import "../../assets/styles/sign-form-responsive.scss";
 import useSignIn from "./useSignIn";
+import { Values } from "./Values";
 
 const SignIn: FC = () => {
-  const { onFinish }: any = useSignIn();
+  const {
+    onFinish,
+  }: {
+    onFinish: (values: Values) => void;
+  } = useSignIn();
 
   return (
     <div className="sign-form d_flex a_items_center j_content_center">
