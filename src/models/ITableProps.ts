@@ -4,9 +4,9 @@ export interface ITableProps {
    title: string;
    allData: ITodo[];
    current: number;
-   setCurrent: any;
+   setCurrent: Function;
    total: number;
-   pageSize: any;
-   onChangeStatus: any;
-   deleteTodo: any;
+   pageSize: number;
+   onChangeStatus: Function;
+   deleteTodo: Function;
  }

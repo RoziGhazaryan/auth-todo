@@ -23,7 +23,7 @@ const useTodoList = () => {
   }, [dispatch, refreshUserData]);
 
   interface TodoElement {
-    id: number;
+    id?: number;
     status?: string;
   }
 

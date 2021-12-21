@@ -9,7 +9,7 @@ const useSidebar = () => {
 
   // useEffect
   useEffect(() => {
-    const handler = (e: any) => setMatches(e.matches);
+    const handler = (e: { matches: boolean }) => setMatches(e.matches);
     window
       .matchMedia("(max-width: 767.98px)")
       .addEventListener("change", handler);
@@ -27,7 +27,9 @@ const useSidebar = () => {
     const usersStr = localStorage.getItem("users") as string;
     const users = JSON.parse(usersStr);
     const token = sessionStorage.getItem("token");
-    const userIndex = users.findIndex((el: any) => el.tokens.includes(token));
+    const userIndex = users.findIndex((el: { tokens: Array<string | null> }) =>
+      el.tokens.includes(token)
+    );
 
     users[userIndex].tokens.splice(users[userIndex].tokens.indexOf(token), 1);
 

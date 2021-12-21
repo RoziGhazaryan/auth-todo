@@ -3,6 +3,6 @@ export interface IUser {
   login: string;
   password: string;
   todoId: number;
-  todo: any;
-  tokens: any,
+  todo: Array<object>;
+  tokens: Array<string>,
 }

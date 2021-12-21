@@ -4,37 +4,39 @@ import { IUserState } from "../../models/IUserState";
 const initialState: IUserState = {
   userState: {
     id: 0,
-    login: '',
-    password: '',
+    login: "",
+    password: "",
     todoId: 0,
     todo: [],
     tokens: [],
   },
   isLoading: false,
-  error: '',
-}
+  error: "",
+};
 
 function getUsers() {
-  const usersStr = localStorage.getItem('users') as string;
+  const usersStr = localStorage.getItem("users") as string;
   const users = JSON.parse(usersStr);
 
   return users;
 }
 
 export const userSlice = createSlice({
-  name: 'userState',
+  name: "userState",
   initialState,
   reducers: {
     refreshUserData(state) {
       const users = getUsers();
-      const token = sessionStorage.getItem('token') as string;
-      const user = users.find((el: any) => el.tokens.includes(token));
+      const token = sessionStorage.getItem("token") as string;
+      const user = users.find((el: { tokens: Array<string> }) =>
+        el.tokens.includes(token)
+      );
 
       state.userState = user;
     },
 
     addTodo(state, action: PayloadAction<any>) {
-      const {userState} = state;
+      const { userState } = state;
       const users = getUsers();
       const userIndex = users.findIndex((el: any) => el.id === userState.id);
       const user = users[userIndex];
@@ -42,49 +44,63 @@ export const userSlice = createSlice({
       user.todo.push(action.payload);
       user.todoId += 1;
 
-      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem("users", JSON.stringify(users));
 
       state.userState = user;
     },
 
     changeTodoStatus(state, action: PayloadAction<any>) {
-      const {userState} = state;
+      const { userState } = state;
       const users = getUsers();
-      const userIndex = users.findIndex((el: any) => el.id === userState.id);
+      const userIndex = users.findIndex(
+        (el: { id: number }) => el.id === userState.id
+      );
       const user = users[userIndex];
-      const todo = user.todo.find((el: any) => el.id === action.payload.id);
+      const todo = user.todo.find(
+        (el: { id: number }) => el.id === action.payload.id
+      );
 
       todo.status = action.payload.status;
 
-      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem("users", JSON.stringify(users));
 
       state.userState = user;
     },
 
     deleteTodo(state, action: PayloadAction<any>) {
-      const {userState} = state;
+      const { userState } = state;
       const users = getUsers();
-      const userIndex = users.findIndex((el: any) => el.id === userState.id);
+      const userIndex = users.findIndex(
+        (el: { id: number }) => el.id === userState.id
+      );
       const user = users[userIndex];
-      const todo = user.todo.find((el: any) => el.id === action.payload.id);
+      const todo = user.todo.find(
+        (el: { id: number }) => el.id === action.payload.id
+      );
 
       user.todo.splice(user.todo.indexOf(todo), 1);
 
-      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem("users", JSON.stringify(users));
 
       state.userState = user;
     },
 
     searchTodo(state, action: PayloadAction<any>) {
-      const {userState} = state;
+      const { userState } = state;
       const users = getUsers();
-      const userIndex = users.findIndex((el: any) => el.id === userState.id);
+      const userIndex = users.findIndex(
+        (el: { id: number }) => el.id === userState.id
+      );
       const user = users[userIndex];
-      user.todo = user.todo.filter((el: any) => el.name.includes(action.payload) || el.description.includes(action.payload))
+      user.todo = user.todo.filter(
+        (el: { name: string; description: string }) =>
+          el.name.includes(action.payload) ||
+          el.description.includes(action.payload)
+      );
 
       state.userState = user;
     },
   },
-})
+});
 
 export default userSlice.reducer;

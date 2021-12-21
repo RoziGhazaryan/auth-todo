@@ -7,15 +7,11 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import useSidebar from "./useSidebar";
+import { ISidebarProps } from "../../models/ISidebarProps";
 import "./style.scss";
 
 const Sidebar: FC = () => {
-  const {
-    matches,
-    location,
-    logOut,
-  }: { matches: boolean; location: { pathname: string }; logOut: any } =
-    useSidebar();
+  const { matches, location, logOut }: ISidebarProps = useSidebar();
 
   return (
     <div className="sidebar">
