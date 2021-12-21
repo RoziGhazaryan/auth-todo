@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import "../../assets/styles/sign-form.scss";
 import "../../assets/styles/sign-form-responsive.scss";
 import useSignIn from "./useSignIn";
-import { Values } from "./Values";
+import { IValues } from "../../models/IValues";
 
 const SignIn: FC = () => {
   const {
     onFinish,
   }: {
-    onFinish: (values: Values) => void;
+    onFinish: (values: IValues) => void;
   } = useSignIn();
 
   return (

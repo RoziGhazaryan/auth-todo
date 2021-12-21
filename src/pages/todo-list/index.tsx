@@ -1,8 +1,9 @@
-import { ChangeEventHandler, FC } from "react";
+import { FC } from "react";
 import TodoTable from "../../components/todo-table";
 import { SearchOutlined } from "@ant-design/icons";
 import { Input } from "antd";
 import useTodoList from "./useTodoList";
+import { ITodoListProps } from "../../models/ITodoListProps";
 import "./style.scss";
 
 const TodoList: FC = () => {
@@ -16,17 +17,7 @@ const TodoList: FC = () => {
     activeData,
     completedData,
     onSearch,
-  }: {
-    currentActive: number;
-    currentCompleted: number;
-    setCurrentActive: Function;
-    setCurrentCompleted: Function;
-    onChangeStatus: Function;
-    deleteUserTodo: Function;
-    activeData: Array<any>;
-    completedData: Array<any>;
-    onSearch: ChangeEventHandler;
-  } = useTodoList();
+  }: ITodoListProps = useTodoList();
 
   return (
     <div className="g-page">

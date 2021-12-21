@@ -1,13 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IUser } from "../../models/IUser";
+import { IUserState } from "../../models/IUserState";
 
-interface UserState {
-  userState: IUser;
-  isLoading: boolean;
-  error: string;
-}
-
-const initialState: UserState = {
+const initialState: IUserState = {
   userState: {
     id: 0,
     login: '',
