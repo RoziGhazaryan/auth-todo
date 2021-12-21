@@ -1,12 +1,12 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Button, Form, Input } from "antd";
 import { Link } from "react-router-dom";
+import useSignUp from "./useSignUp";
 import "../../assets/styles/sign-form.scss";
 import "../../assets/styles/sign-form-responsive.scss";
-import useSignUp from "./useSignUp";
 
 const SignUp: FC = () => {
-  const { onFinish }: any = useSignUp();
+  const { onFinish }: { onFinish: (values: object) => void } = useSignUp();
 
   return (
     <div className="sign-form d_flex a_items_center j_content_center">

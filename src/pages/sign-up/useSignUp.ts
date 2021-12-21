@@ -6,7 +6,7 @@ const useSignUp = () => {
   const history = useHistory();
 
   // sign up
-  const onFinish = (values: any) => {
+  const onFinish = (values: object) => {
     // localStorage
     const usersStr = localStorage.getItem("users") as string;
     const userIdStr = localStorage.getItem("userId") as string;
