@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FC } from "react";
+import { FC } from "react";
 import { Button, Input } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import useAddTodo from "./useAddTodo";

@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { Button, Form, Input } from "antd";
 import { Link } from "react-router-dom";
-import "../../assets/styles/sign-form.scss";
-import "../../assets/styles/sign-form-responsive.scss";
 import useSignIn from "./useSignIn";
 import { IValues } from "../../models/IValues";
+import "../../assets/styles/sign-form.scss";
+import "../../assets/styles/sign-form-responsive.scss";
 
 const SignIn: FC = () => {
   const {
