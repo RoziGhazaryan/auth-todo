@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { ITodoObject } from "../../models/ITodoObject";
 import { userSlice } from "../../store/reducers/UserSlice";
 
 const useTodoList = () => {
@@ -22,14 +23,9 @@ const useTodoList = () => {
     dispatch(refreshUserData());
   }, [dispatch, refreshUserData]);
 
-  interface TodoElement {
-    id?: number;
-    status?: string;
-  }
-
   // change status
   const onChangeStatus = useCallback(
-    (el: TodoElement) => {
+    (el: ITodoObject) => {
       dispatch(
         changeTodoStatus({
           id: el.id,
@@ -42,7 +38,7 @@ const useTodoList = () => {
 
   // delete todo
   const deleteUserTodo = useCallback(
-    (el: TodoElement) => {
+    (el: ITodoObject) => {
       dispatch(deleteTodo({ id: el.id }));
     },
     [dispatch, deleteTodo]
