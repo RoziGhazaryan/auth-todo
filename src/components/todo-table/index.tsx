@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Pagination, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { DeleteOutlined } from '@ant-design/icons';
@@ -116,4 +116,4 @@ const TodoTable: FC<TableProps> = (
   )
 };
 
-export default TodoTable;
+export default React.memo(TodoTable);

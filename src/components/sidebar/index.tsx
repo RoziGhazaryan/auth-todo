@@ -1,66 +1,36 @@
-import { FC, useEffect, useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import { Menu } from 'antd';
+import React, { FC } from "react";
+import { Link } from "react-router-dom";
+import { Menu } from "antd";
 import {
   UnorderedListOutlined,
   FileAddOutlined,
   LogoutOutlined,
-} from '@ant-design/icons';
-import './style.scss';
+} from "@ant-design/icons";
+import useSidebar from "./useSidebar";
+import "./style.scss";
 
 const Sidebar: FC = () => {
-  // useState
-  const [matches, setMatches] = useState(window.matchMedia("(max-width: 767.98px)").matches);
-
-  // useEffect
-  useEffect(() => {
-    const handler = (e: any) => setMatches(e.matches);
-    window.matchMedia("(max-width: 767.98px)").addEventListener('change', handler);
-  }, [])
-
-  // useHistory
-  const history = useHistory();
-
-  // useLocation
-  const location = useLocation();
-
-  // logout function
-  const logOut = () => {
-    const usersStr = localStorage.getItem('users') as string;
-    const users = JSON.parse(usersStr);
-    const token = sessionStorage.getItem('token');
-    const userIndex = users.findIndex((el: any) => el.tokens.includes(token));
-
-    users[userIndex].tokens.splice(users[userIndex].tokens.indexOf(token), 1);
-
-    localStorage.setItem('users', JSON.stringify(users));
-
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('user');
-
-    window.location.reload();
-
-    history.push('/sign-in');
-  }
+  const {
+    matches,
+    location,
+    logOut,
+  }: { matches: boolean; location: { pathname: string }; logOut: any } =
+    useSidebar();
 
   return (
     <div className="sidebar">
       <Menu
-        defaultSelectedKeys={['/add-todo']}
+        defaultSelectedKeys={["/add-todo"]}
         selectedKeys={[location.pathname]}
         mode="inline"
         theme="dark"
         inlineCollapsed={matches}
       >
         <Menu.Item key="/add-todo" icon={<FileAddOutlined />}>
-          <Link to='/add-todo'>
-            Add todo
-          </Link>
+          <Link to="/add-todo">Add todo</Link>
         </Menu.Item>
         <Menu.Item key="/todo-list" icon={<UnorderedListOutlined />}>
-          <Link to='/todo-list'>
-            My Todo Lists
-          </Link>
+          <Link to="/todo-list">My Todo Lists</Link>
         </Menu.Item>
         <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={logOut}>
           Log out
@@ -68,6 +38,6 @@ const Sidebar: FC = () => {
       </Menu>
     </div>
   );
-}
+};
 
-export default Sidebar;
+export default React.memo(Sidebar);

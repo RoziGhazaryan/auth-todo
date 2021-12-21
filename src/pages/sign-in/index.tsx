@@ -1,52 +1,18 @@
 import { FC } from "react";
-import { Button, Form, Input, message } from "antd";
-import { Link, useHistory } from "react-router-dom";
-import '../../assets/styles/sign-form.scss';
-import '../../assets/styles/sign-form-responsive.scss';
+import { Button, Form, Input } from "antd";
+import { Link } from "react-router-dom";
+import "../../assets/styles/sign-form.scss";
+import "../../assets/styles/sign-form-responsive.scss";
+import useSignIn from "./useSignIn";
 
 const SignIn: FC = () => {
-  // useHistory
-  const history = useHistory();
-
-  // variable
-  let isUserExist = false;
-
-  // sign in
-  const onFinish = (values: any) => {
-    const usersStr = localStorage.getItem('users') as string;
-    const users = JSON.parse(usersStr);
-
-    users?.some((el: any) => {
-      if (values.login === el.login && values.password === el.password) {
-        isUserExist = true;
-        values.id = el.id;
-        return true;
-      } else {
-        isUserExist = false;
-        return false;
-      }
-    })
-
-    if (!users || !isUserExist) {
-      message.error("User doesn't exist");
-    } else {
-      const token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-      sessionStorage.setItem('token', token);
-
-      const userIndex = users.findIndex((el: any) => el.id === values.id);
-      users[userIndex].tokens.push(token);
-      localStorage.setItem('users', JSON.stringify(users));
-
-      history.push('/');
-      window.location.reload();
-    }
-  };
+  const { onFinish }: any = useSignIn();
 
   return (
     <div className="sign-form d_flex a_items_center j_content_center">
       <Form
         name="basic"
-        initialValues={{remember: true}}
+        initialValues={{ remember: true }}
         onFinish={onFinish}
         autoComplete="off"
       >
@@ -54,19 +20,19 @@ const SignIn: FC = () => {
         <Form.Item
           label="Login"
           name="login"
-          rules={[{required: true, message: 'Please input your login!'}]}
+          rules={[{ required: true, message: "Please input your login!" }]}
         >
-          <Input />
+          <Input autoComplete="on" />
         </Form.Item>
         <Form.Item
           label="Password"
           name="password"
-          rules={[{required: true, message: 'Please input your password!'}]}
+          rules={[{ required: true, message: "Please input your password!" }]}
         >
-          <Input.Password />
+          <Input.Password autoComplete="on" />
         </Form.Item>
         <div className="sign-link">
-          <Link to='/sign-up'>Sign up here</Link>
+          <Link to="/sign-up">Sign up here</Link>
         </div>
         <Form.Item>
           <Button type="primary" htmlType="submit">
@@ -75,6 +41,6 @@ const SignIn: FC = () => {
         </Form.Item>
       </Form>
     </div>
-  )
-}
+  );
+};
 export default SignIn;
