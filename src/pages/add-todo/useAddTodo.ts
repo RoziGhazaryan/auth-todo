@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from "react";
 import { useAppDispatch } from "../../hooks/redux";
 import { userSlice } from "../../store/reducers/UserSlice";
 import moment from "moment";
+import { ITodo } from "../../models/ITodo";
 
 const useAddTodo = () => {
   // useDispatch
@@ -21,16 +22,7 @@ const useAddTodo = () => {
 
   const user = users.find((el: {tokens: Array<string>}) => el.tokens?.includes(token));
 
-  interface TodoObj {
-    id: number;
-    key: number;
-    status: string;
-    name: string;
-    description: string;
-    creationDate: string;
-  }
-
-  const todoObj: TodoObj = useMemo(() => {
+  const todoObj: ITodo = useMemo(() => {
     return {
       id: user.todoId + 1,
       key: user.todoId + 1,

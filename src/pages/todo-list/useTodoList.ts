@@ -22,9 +22,14 @@ const useTodoList = () => {
     dispatch(refreshUserData());
   }, [dispatch, refreshUserData]);
 
+  interface TodoElement {
+    id: number;
+    status?: string;
+  }
+
   // change status
   const onChangeStatus = useCallback(
-    (el: any) => {
+    (el: TodoElement) => {
       dispatch(
         changeTodoStatus({
           id: el.id,
@@ -37,7 +42,7 @@ const useTodoList = () => {
 
   // delete todo
   const deleteUserTodo = useCallback(
-    (el: any) => {
+    (el: TodoElement) => {
       dispatch(deleteTodo({ id: el.id }));
     },
     [dispatch, deleteTodo]
@@ -49,6 +54,8 @@ const useTodoList = () => {
     [userState.todo]
   );
 
+  console.log("userState.todo", userState.todo);
+
   const completedData = useMemo(
     () => userState.todo.filter((el: any) => el.status === "completed"),
     [userState.todo]
@@ -56,7 +63,7 @@ const useTodoList = () => {
 
   // search todo
   const onSearch = useCallback(
-    (e: any) => {
+    (e: React.ChangeEvent<HTMLInputElement>) => {
       dispatch(searchTodo(e?.target?.value));
     },
     [dispatch, searchTodo]

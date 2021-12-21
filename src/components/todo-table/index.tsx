@@ -3,28 +3,12 @@ import { Pagination, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { DeleteOutlined } from "@ant-design/icons";
 import moment from "moment";
+import { ITodo } from "../../models/ITodo";
+import { ITableProps } from "../../models/ITableProps";
 import "./style.scss";
 import "./responsive.scss";
 
-interface Todo {
-  id: number;
-  name: string;
-  description: string;
-  status: string;
-}
-
-interface TableProps {
-  title: string;
-  allData: Todo[];
-  current: number;
-  setCurrent: any;
-  total: number;
-  pageSize: any;
-  onChangeStatus: any;
-  deleteTodo: any;
-}
-
-const TodoTable: FC<TableProps> = ({
+const TodoTable: FC<ITableProps> = ({
   title,
   allData,
   current,
@@ -34,20 +18,21 @@ const TodoTable: FC<TableProps> = ({
   onChangeStatus,
   deleteTodo,
 }) => {
-  const columns: ColumnsType<Todo> = [
+  const columns: ColumnsType<ITodo> = [
     {
       key: "id",
       title: "Name",
       dataIndex: "name",
       sorter: {
-        compare: (a: any, b: any) => a.name.localeCompare(b.name),
+        compare: (a: any, b: any) =>
+          a.name.localeCompare(b.name),
       },
     },
     {
       key: "id",
       title: "Description",
       dataIndex: "description",
-      render: (text) => <div className="description">{text}</div>,
+      render: (text: string) => <div className="description">{text}</div>,
     },
     {
       key: "id",
@@ -70,7 +55,9 @@ const TodoTable: FC<TableProps> = ({
       key: "id",
       title: "Created at",
       dataIndex: "creationDate",
-      render: (creationDate) => <h4>{moment(creationDate).fromNow()}</h4>,
+      render: (creationDate: string) => (
+        <h4>{moment(creationDate).fromNow()}</h4>
+      ),
       sorter: (a: any, b: any) =>
         moment(a.creationDate).unix() - moment(b.creationDate).unix(),
     },
@@ -87,7 +74,7 @@ const TodoTable: FC<TableProps> = ({
   ];
 
   // useState
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<Array<object>>([]);
 
   // change page
   function onChangePage(page: number) {
@@ -107,7 +94,7 @@ const TodoTable: FC<TableProps> = ({
     <div className="todo-table">
       <h2 className="todo-type">{title}</h2>
       <div className="todo-table--inner">
-        <Table<Todo> columns={columns} dataSource={data} pagination={false} />
+        <Table columns={columns} dataSource={data} pagination={false} />
         <Pagination
           current={current}
           onChange={onChangePage}
