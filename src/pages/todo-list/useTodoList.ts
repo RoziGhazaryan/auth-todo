@@ -54,8 +54,6 @@ const useTodoList = () => {
     [userState.todo]
   );
 
-  console.log("userState.todo", userState.todo);
-
   const completedData = useMemo(
     () => userState.todo.filter((el: any) => el.status === "completed"),
     [userState.todo]
