@@ -21,7 +21,16 @@ const useAddTodo = () => {
 
   const user = users.find((el: any) => el.tokens?.includes(token));
 
-  const todoObj = useMemo(() => {
+  interface TodoObj {
+    id: number;
+    key: number;
+    status: string;
+    name: string;
+    description: string;
+    creationDate: string;
+  }
+
+  const todoObj: TodoObj = useMemo(() => {
     return {
       id: user.todoId + 1,
       key: user.todoId + 1,
