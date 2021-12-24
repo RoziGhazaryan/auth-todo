@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Button, Form, Input } from "antd";
 import { Link } from "react-router-dom";
 import useSignIn from "./useSignIn";
-import { IValues } from "../../models/IValues";
+import { Values } from "../../models/Values";
 import "../../assets/styles/sign-form.scss";
 import "../../assets/styles/sign-form-responsive.scss";
 
@@ -10,7 +10,7 @@ const SignIn: FC = () => {
   const {
     onFinish,
   }: {
-    onFinish: (values: IValues) => void;
+    onFinish: (values: Values) => void;
   } = useSignIn();
 
   return (

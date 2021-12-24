@@ -3,7 +3,7 @@ import TodoTable from "../../components/todo-table";
 import { SearchOutlined } from "@ant-design/icons";
 import { Input } from "antd";
 import useTodoList from "./useTodoList";
-import { ITodoListProps } from "../../models/ITodoListProps";
+import { TodoListProps } from "../../models/TodoListProps";
 import "./style.scss";
 
 const TodoList: FC = () => {
@@ -17,7 +17,7 @@ const TodoList: FC = () => {
     activeData,
     completedData,
     onSearch,
-  }: ITodoListProps = useTodoList();
+  }: TodoListProps = useTodoList();
 
   return (
     <div className="g-page">

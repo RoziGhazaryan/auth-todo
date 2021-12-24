@@ -2,7 +2,7 @@ import SignUp from "../pages/sign-up";
 import SignIn from "../pages/sign-in";
 import TodoList from "../pages/todo-list";
 import AddTodo from "../pages/add-todo";
-import { IRoute } from "../models/IRoute";
+import { Route } from "../models/Route";
 
 export enum RouteNames {
   SIGN_UP = "/sign-up",
@@ -11,7 +11,7 @@ export enum RouteNames {
   ADD_TODO = "/add-todo",
 }
 
-export const publicRoutes: IRoute[] = [
+export const publicRoutes: Route[] = [
   {
     path: RouteNames.SIGN_UP,
     component: SignUp,
@@ -24,7 +24,7 @@ export const publicRoutes: IRoute[] = [
   },
 ];
 
-export const privateRoutes: IRoute[] = [
+export const privateRoutes: Route[] = [
   {
     path: RouteNames.TODO_LIST,
     component: TodoList,

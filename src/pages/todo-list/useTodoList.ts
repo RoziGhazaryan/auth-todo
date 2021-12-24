@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { ITodo } from "../../models/ITodo";
-import { ITodoObject } from "../../models/ITodoObject";
+import { Todo } from "../../models/Todo";
+import { TodoObject } from "../../models/TodoObject";
 import { userSlice } from "../../store/reducers/UserSlice";
 
 const useTodoList = () => {
@@ -26,7 +26,7 @@ const useTodoList = () => {
 
   // change status
   const onChangeStatus = useCallback(
-    (el: ITodoObject) => {
+    (el: TodoObject) => {
       dispatch(
         changeTodoStatus({
           id: el.id,
@@ -39,7 +39,7 @@ const useTodoList = () => {
 
   // delete todo
   const deleteUserTodo = useCallback(
-    (el: ITodoObject) => {
+    (el: TodoObject) => {
       dispatch(deleteTodo({ id: el.id }));
     },
     [dispatch, deleteTodo]
@@ -47,12 +47,12 @@ const useTodoList = () => {
 
   // filter by status
   const activeData = useMemo(
-    () => userState.todo.filter((el: ITodo) => el.status === "active"),
+    () => userState.todo.filter((el: Todo) => el.status === "active"),
     [userState.todo]
   );
 
   const completedData = useMemo(
-    () => userState.todo.filter((el: ITodo) => el.status === "completed"),
+    () => userState.todo.filter((el: Todo) => el.status === "completed"),
     [userState.todo]
   );
 

@@ -1,6 +1,6 @@
 import { message } from "antd";
 import { useHistory } from "react-router-dom";
-import { IValues } from "../../models/IValues";
+import { Values } from "../../models/Values";
 
 const useSignIn = () => {
   // useHistory
@@ -10,11 +10,11 @@ const useSignIn = () => {
   let isUserExist = false;
 
   // sign in
-  const onFinish = (values: IValues) => {
+  const onFinish = (values: Values) => {
     const usersStr = localStorage.getItem("users") as string;
     const users = JSON.parse(usersStr);
 
-    users?.some((el: IValues) => {
+    users?.some((el: Values) => {
       if (values.login === el.login && values.password === el.password) {
         isUserExist = true;
         values.id = el.id;

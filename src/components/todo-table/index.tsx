@@ -3,12 +3,12 @@ import { Pagination, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { DeleteOutlined } from "@ant-design/icons";
 import moment from "moment";
-import { ITodo } from "../../models/ITodo";
-import { ITableProps } from "../../models/ITableProps";
+import { Todo } from "../../models/Todo";
+import { TableProps } from "../../models/TableProps";
 import "./style.scss";
 import "./responsive.scss";
 
-const TodoTable: FC<ITableProps> = ({
+const TodoTable: FC<TableProps> = ({
   title,
   allData,
   current,
@@ -18,7 +18,7 @@ const TodoTable: FC<ITableProps> = ({
   onChangeStatus,
   deleteTodo,
 }) => {
-  const columns: ColumnsType<ITodo> = [
+  const columns: ColumnsType<Todo> = [
     {
       key: "id",
       title: "Name",

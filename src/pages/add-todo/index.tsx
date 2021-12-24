@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Button, Input } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import useAddTodo from "./useAddTodo";
-import { IAddTodoProps } from "../../models/IAddTodoProps";
+import { AddTodoProps } from "../../models/AddTodoProps";
 import "./style.scss";
 import "./responsive.scss";
 
@@ -14,7 +14,7 @@ const AddTodo: FC = () => {
     onChangeDescription,
     onKeyDown,
     onAddTodo,
-  }: IAddTodoProps = useAddTodo();
+  }: AddTodoProps = useAddTodo();
 
   return (
     <div className="g-page">
