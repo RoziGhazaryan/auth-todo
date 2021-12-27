@@ -1,6 +1,6 @@
 import { User } from './User';
 
-export interface UserState {
+export type UserState = {
 	userState: User;
 	isLoading: boolean;
 	error: string;

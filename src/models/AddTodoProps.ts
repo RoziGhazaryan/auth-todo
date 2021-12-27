@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 
-export interface AddTodoProps {
+export type AddTodoProps = {
 	name: string;
 	description: string;
 	onChangeName: (e: ChangeEvent<HTMLInputElement>) => void;

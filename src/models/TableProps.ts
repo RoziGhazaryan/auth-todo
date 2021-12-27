@@ -1,6 +1,6 @@
 import { Todo } from './Todo';
 
-export interface TableProps {
+export type TableProps = {
 	title: string;
 	allData: Todo[];
 	current: number;

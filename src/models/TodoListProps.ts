@@ -1,5 +1,5 @@
 import { ChangeEventHandler } from 'react';
-export interface TodoListProps {
+export type TodoListProps = {
 	currentActive: number;
 	currentCompleted: number;
 	setCurrentActive: Function;

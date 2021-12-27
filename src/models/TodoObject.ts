@@ -1,4 +1,4 @@
-export interface TodoObject {
+export type TodoObject = {
 	id?: number;
 	status?: string;
 }
