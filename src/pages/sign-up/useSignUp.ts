@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const useSignUp = () => {
-  // useHistory
-  const history = useHistory();
+  // useNavigate
+  const navigate = useNavigate();
 
   // sign up
   const onFinish = (values: object) => {
@@ -18,8 +18,8 @@ const useSignUp = () => {
     localStorage.setItem("userId", userId);
     localStorage.setItem("users", JSON.stringify(users));
 
-    // history
-    history.push("/sign-in");
+    // navigate
+    navigate("/sign-in");
   };
 
   // useEffect

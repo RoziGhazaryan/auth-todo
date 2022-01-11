@@ -1,10 +1,10 @@
 import { message } from "antd";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Values } from "../../models/Values";
 
 const useSignIn = () => {
-  // useHistory
-  const history = useHistory();
+  // useNavigate
+  const navigate = useNavigate();
 
   // variable
   let isUserExist = false;
@@ -39,7 +39,7 @@ const useSignIn = () => {
       users[userIndex].tokens.push(token);
       localStorage.setItem("users", JSON.stringify(users));
 
-      history.push("/");
+      navigate("/");
       window.location.reload();
     }
   };

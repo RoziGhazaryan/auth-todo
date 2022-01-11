@@ -17,7 +17,7 @@ export const publicRoutes: Route[] = [
     component: SignUp,
     exact: true,
   },
-  {
+    {
     path: RouteNames.SIGN_IN,
     component: SignIn,
     exact: true,

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const useSidebar = () => {
   // useState
@@ -15,8 +15,8 @@ const useSidebar = () => {
       .addEventListener("change", handler);
   }, []);
 
-  // useHistory
-  const history = useHistory();
+  // useNavigate
+  const navigate = useNavigate();
 
   // useLocation
   const location = useLocation();
@@ -40,8 +40,8 @@ const useSidebar = () => {
 
     window.location.reload();
 
-    // history
-    history.push("/sign-in");
+    // navigate
+    navigate("/sign-in");
   };
 
   return {
